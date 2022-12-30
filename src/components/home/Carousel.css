@@ -1,0 +1,100 @@
+.bannerSlide{
+    @apply mt-16 w-full lg:h-99 md:h-80 h-44 overflow-hidden relative;
+};
+
+.slideImage{
+    @apply block object-cover object-left-bottom w-full;
+};
+.bannerSlide:hover .trailer{
+    opacity: 0.5;
+}
+li.slick-active .slickDots {
+    opacity: 1 !important;
+}
+.slickDots:hover{
+    opacity: 1 !important;
+}
+.trailer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all .5s;
+}
+.trailer img{
+    display: block;
+    width: 40px;
+}
+.trailer:hover{
+    opacity: 1 !important;
+}
+.setPrev, .setNext{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    z-index: 1;
+    font-size: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+.setNext{
+ right: 0;
+}
+.setPrev{
+    left: 0;
+}
+.setPrev::after{
+    content: '';
+    display: block;
+    position: absolute;
+    background: linear-gradient(to right, #fab85d 0%, #ed7734 100%);
+    opacity: 0.7;
+    top: 40%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 0px;
+    height: 30px;
+    z-index: -1;
+    border-radius: 0 10px 10px 0;
+    transition: all .5s;
+}
+.setNext::after{
+    content: '';
+    display: block;
+    position: absolute;
+    background: linear-gradient(to left, #fab85d 0%, #ed7734 100%);
+    opacity: 0.7;
+    top: 40%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 0px;
+    height: 30px;
+    z-index: -1;
+    border-radius: 10px 0 0 10px;
+    transition: all .5s;
+}
+.setPrev:hover, .setNext:hover{
+    opacity: 1;
+}
+.setPrev:hover::after, .setNext:hover::after{
+    width: 20px;
+}
+
+@media screen and (min-width: 391.98px){
+    .setPrev::after,.setNext::after{
+        height: 60px;
+    }
+    .setPrev:hover::after, .setNext:hover::after{
+        width: 30px;
+    }
+    .setPrev, .setNext{
+        font-size: 30px;
+    }
+    .trailer img{
+        display: block;
+        width: 70px;
+    }
+}

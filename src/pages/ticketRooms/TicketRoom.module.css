@@ -1,0 +1,21 @@
+.ticketRoom{
+    background: url(../../assets/image/banner.jpg);
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    padding: 70px 0 40px 0;
+    color: white;
+}
+
+.screen{
+    width: 95%;
+    margin: auto;
+    height: 20px;
+    border: 20px solid transparent;
+    border-bottom: 20px solid rgb(254, 149, 30);
+    position: relative;
+    margin-bottom: 50px;   
+    box-shadow: 0 26px 35px -14px rgb(255 255 255); 
+    position: relative;
+}
+

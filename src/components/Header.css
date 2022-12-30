@@ -1,0 +1,82 @@
+
+.header{
+    @apply fixed top-0 left-0 right-0 z-50 shadow-md shadow-cyan-200/10 p-2 bg-slate-900 text-gray-100 flex justify-around items-center
+}
+.navBar{
+    @apply list-none items-center lg:flex z-50;
+};
+
+.admin{
+    @apply lg:flex items-center z-50;
+}
+
+.navLink{
+    @apply  no-underline mx-3 text-sm font-semibold
+}
+
+.adminLink{
+    @apply  no-underline text-sm
+}
+
+@media screen and (max-width:821.98px ){
+    .admin{
+        @apply border border-solid  border-orange-400 absolute w-full p-1 bg-white text-center;
+        bottom: -110px;
+        right: 0;
+    }
+
+    .navLink{
+        @apply text-base mx-2 
+    }
+    
+    .adminLink{
+        @apply text-black block p-1 hover:bg-orange-500 transition duration-150 ease-in-out 
+    }
+    .navBar{
+        @apply absolute bg-white right-0 border-solid border-orange-400 border w-full text-center;
+        bottom: -160px;
+    }
+    .navItem{
+        @apply  hover:bg-orange-500 transition duration-100 ease-in-out py-1 cursor-pointer
+    }
+    .navLink{
+        @apply text-black
+    }
+
+}
+
+@media screen and (max-width:769.98px ){
+    
+    .navLink{
+        @apply text-base mx-2 
+    }
+    .admin{
+        @apply border border-solid  border-orange-400 absolute w-full p-1 bg-white text-center;
+        bottom: -110px;
+        right: 0;
+    }
+
+    .adminLink{
+        @apply text-black block p-1 hover:bg-orange-500 transition duration-150 ease-in-out 
+    }
+    .navBar{
+        @apply absolute bg-white left-0 border-solid border-orange-400 border w-full text-center;
+        bottom: -160px;
+    }
+    .navItem{
+        @apply  hover:bg-orange-500 transition duration-100 ease-in-out py-1 cursor-pointer
+    }
+    .navLink{
+        @apply text-black
+    }
+    
+}
+@media screen and (max-width:391.98px ){
+    
+    .admin{
+        bottom: -110px;
+        right: 0;
+    }
+    
+}
+

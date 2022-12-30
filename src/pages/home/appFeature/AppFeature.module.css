@@ -1,0 +1,39 @@
+
+.appFeature{
+    background: url(../../../assets/image/backapp.b46ef3a1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 70px 0;
+}
+
+.imgApp img:first-child{
+    width: 218px;
+    height: 430px;
+    display: block;
+    
+}
+.imgApp{
+    position: relative;
+}
+
+.imgCarousel{
+    position: absolute;
+    width: 200px;
+    top: 13px;
+    left: 9px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.imgCarousel img{
+    display: block;
+    border-radius: 20px;
+    height: 405px !important;
+}
+
+.appButton{
+    font-size: 18px;
+    @apply px-7 py-5 border-none bg-orange-600 text-white mt-10
+    rounded-md uppercase hover:bg-orange-800 cursor-pointer transition 
+    duration-500 ;
+}

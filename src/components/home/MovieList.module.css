@@ -1,0 +1,73 @@
+.movieList{
+    box-shadow: 0 45px 36px -38px #dbd4d4bf;
+    @apply container mx-auto px-5 lg:px-36 mt-5 md:mt-0 relative py-0 md:pt-32 md:pb-16;
+}
+.movieCard{
+    @apply mx-3 overflow-hidden;
+}
+.movieCard:hover .imgCard{
+    filter: brightness(50%)
+}
+.movieCard:hover .watchTrailer{
+    opacity: 1;
+}
+.imgCard{
+    @apply relative h-64 object-cover;
+    transition: all .5s 
+}
+.movieHot{
+    @apply px-2 py-2 bg-red-600 text-white absolute top-0 right-0 opacity-90;
+}
+.watchTrailer{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    opacity: 0;
+    transition: all .5s;
+}
+.watchTrailer:hover{
+    opacity: .7 !important;
+    cursor: pointer;
+}
+.btnBooking{
+    @apply bg-orange-600 text-white px-8 mt-2 py-2 border-transparent rounded-lg cursor-pointer relative overflow-hidden;
+
+}
+
+.btnBooking::after{
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: rgba(255, 254, 254, 0.291);
+    width: 80px;
+    height: 120%;
+    top: -3px;
+    left: -150%;
+    transform: skew(-45deg);
+    transition: all .6s;
+}
+
+.btnBooking:hover::after{
+    left: 150%;
+}
+.cardBooking{
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    opacity: 1;
+    background-color: white;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+}
+.movieCard:hover .cardBooking{
+    opacity: 1;
+    visibility: visible;
+}
+
+
