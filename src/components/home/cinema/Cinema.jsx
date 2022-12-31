@@ -23,7 +23,7 @@ const Cinema = () => {
     }, []);
 
     return (
-        <div id='cumRap' className='container mx-auto px-0 md:px-40 pt-10 md:pt-32'>
+        <div id='cumRap' className='container mx-auto px-0 md:px-5 lg:px-40 pt-10 md:pt-32'>
             <Tabs className='border border-solid border-gray-300'
                 onChange={(key) => {
 
