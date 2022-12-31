@@ -4,7 +4,7 @@
 };
 
 .resultPay{
-    @apply px-5 py-2 text-lg cursor-pointer mt-2 bg-orange-500 hover:bg-orange-700 transition-all border-none rounded-md text-white;
+    @apply px-4 py-2 text-lg cursor-pointer mt-2 bg-orange-500 hover:bg-orange-700 transition-all border-none rounded-md text-white;
 };
 .selectedChair{
     width: 90px;

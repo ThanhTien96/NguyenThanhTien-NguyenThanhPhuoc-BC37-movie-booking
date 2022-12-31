@@ -1,10 +1,10 @@
 
-import { Alert, Space } from 'antd'
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Outlet } from 'react-router-dom'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
+import { Alert, Space } from 'antd'; 
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 const HomeTemplate = () => {
   const mesSuccess = useSelector(state => state.movieManagerSlice.isAlertSuccess);
