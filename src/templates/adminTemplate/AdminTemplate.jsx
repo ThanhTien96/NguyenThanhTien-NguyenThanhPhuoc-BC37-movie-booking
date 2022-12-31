@@ -4,11 +4,12 @@ import { Alert, Breadcrumb, Layout, Menu, Space, theme } from 'antd'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/image/logo.svg';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { fetchApiMoviesList } from '../../redux/reducers/admin/movieManagerSlice';
 import { getApiAccount } from '../../redux/reducers/admin/accountManagerSlice';
 import { ExportOutlined } from '@ant-design/icons';
 import { fetchApiLoginAction } from '../../redux/reducers/user/UserLogin';
+import Swal from 'sweetalert2';
 
 
 
@@ -39,6 +40,8 @@ const Dashboard = (props) => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchApiMoviesList());
     dispatch(getApiAccount());
@@ -55,8 +58,21 @@ const Dashboard = (props) => {
 
   //log out
   const handleLogOut = () => {
-    localStorage.removeItem('TOKEN');
-    dispatch(fetchApiLoginAction(null))
+    Swal.fire({
+      title: 'Bạn có muốn đăng xuất',
+      icon: 'question',
+      confirmButtonText: 'Đăng Xuất',
+      showCancelButton: true,
+      cancelButtonText: 'Hủy Bỏ',
+    }).then(result => {
+      if (result.isConfirmed) {
+        dispatch(fetchApiLoginAction(null));
+        localStorage.removeItem('TOKEN');
+        navigate('/');
+        Swal.fire('Đăn Xuất Thành Công !', '', 'success')
+      } 
+
+    })
   }
 
 

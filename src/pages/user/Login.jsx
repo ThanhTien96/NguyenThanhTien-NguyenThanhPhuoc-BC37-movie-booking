@@ -2,23 +2,21 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { fetchApiUserLogin } from '../../redux/reducers/user/UserLogin';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import * as yup from 'yup';
-import Swal from 'sweetalert2';
 
 const Login = (props) => {
   const [message, setMessage] = useState('');
   const [saveAccount, setSaveAccount] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-      taiKhoan: '',
-      matKhau: '',
+      taiKhoan: 'thanhtien1',
+      matKhau: 'thanhtien1',
     },
     validationSchema: yup.object({
       taiKhoan: yup.string().required('* Vui lòng nhập tài khoản !'),
@@ -54,14 +52,14 @@ const Login = (props) => {
         <div >
           <div>
             <p>Tài Khoản</p>
-            <input name='taiKhoan' onChange={formik.handleChange} type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Tài Khoản" />
+            <input value={formik.values.taiKhoan} name='taiKhoan' onChange={formik.handleChange} type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Tài Khoản" />
             {formik.errors.taiKhoan && formik.touched.taiKhoan && (<p className='text-red-700 mb-5'>{formik.errors.taiKhoan}</p>)}
           </div>
 
 
           <div className='relative'>
             <p className='mb-1'>Mật Khẩu</p>
-            <input name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-3" placeholder="Mật Khẩu" />
+            <input value={formik.values.matKhau} name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-3" placeholder="Mật Khẩu" />
             {formik.errors.matKhau && formik.touched.matKhau && (<p className='text-red-700 mb-5'>{formik.errors.matKhau}</p>)}
             <div
               style={{ position: 'absolute', top: '47%', right: '10px', cursor: 'pointer' }}>

@@ -6,6 +6,7 @@ import { fetchApiRegister } from '../../redux/reducers/user/UserLogin';
 import { useDispatch } from 'react-redux';
 import { maNhom } from '../../util/apiPath';
 import * as yup from 'yup';
+import Swal from 'sweetalert2';
 
 
 
@@ -34,9 +35,20 @@ const SignUp = (props) => {
     }),
     onSubmit: async (value) => {
       try {
-        await dispatch(fetchApiRegister(value))
+        await dispatch(fetchApiRegister(value));
 
-        navigate('/user/login')
+        Swal.fire({
+          title: 'Đăng ký thành công',
+          icon: 'success',
+          showCancelButton: false,
+        }).then(result => {
+          if (result.isConfirmed) {
+            navigate('/user/login')
+          } 
+    
+        })
+
+        
       } catch (err) {
         setValidMess(err.response.data.content)
         console.log(err.response)
