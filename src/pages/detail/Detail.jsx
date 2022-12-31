@@ -83,7 +83,7 @@ const Detail = (props) => {
                     <tbody>
                       <tr className='block mt-2'>
                         <th className='text-white text-lg'>khoi chieu: </th>
-                        <th><Tag className='ml-3' color='magenta'>{moment(movieDetail?.ngayKhoiChieu).format('DD/MM/YYYY ~ h:mm:ss')}</Tag></th>
+                        <th><Tag className='ml-3' color='magenta'>{moment(movieDetail?.ngayKhoiChieu).format('DD/MM/YYYY')}</Tag></th>
                       </tr>
                       <tr className='mt-3 block'>
                         {movieDetail?.dangChieu && <th> <Tag color='magenta'>Dang Chieu</Tag></th>}

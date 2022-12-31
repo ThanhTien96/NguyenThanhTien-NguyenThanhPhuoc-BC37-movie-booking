@@ -65,7 +65,7 @@ const EditFilms = (props) => {
     })
 
     const handleChangeDatePicker = (value) => {
-        let ngayKhoiChieu = moment(value);
+        let ngayKhoiChieu = moment(value?.$d).format('DD/MM/YYYY');
         formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
     };
 

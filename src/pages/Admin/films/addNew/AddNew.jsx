@@ -68,7 +68,7 @@ const AddNew = (props) => {
     })
 
     const handleChangeDatePicker = (value) => {
-        let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
+        let ngayKhoiChieu = moment(value?.$d).format('DD/MM/YYYY');
         formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
     };
 
