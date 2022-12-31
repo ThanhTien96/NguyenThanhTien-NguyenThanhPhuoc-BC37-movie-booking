@@ -129,7 +129,7 @@ const News = () => {
     const [seeMore, setSeeMore] = useState(false);
     return (
         <div id='tinTuc24h' className='py-10 md:pt-32'>
-            <div className="container mx-auto md:px-40">
+            <div className="container mx-auto px-5 lg:px-40">
                 <Tabs
                     defaultActiveKey="1"
                     size='large'
