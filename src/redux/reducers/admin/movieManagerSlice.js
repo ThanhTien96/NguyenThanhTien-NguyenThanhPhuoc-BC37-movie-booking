@@ -133,13 +133,13 @@ export const deleteFilmApi = (maPhim) => {
         try{
             dispatch(setIsLoading(true));
             const res = await adminService.deleteFilmApiSevice(maPhim);
-            dispatch(isAlertAction({message: res.data.content}))
+            await dispatch(isAlertActionSuccess({message: 'xóa thành công'}));
+            await setTimeout(() => {
+                dispatch(isAlertActionSuccess(null));
+            }, 1000)
             await dispatch(fetchApiMoviesList());
         }catch(err){
             console.log(err);
-        }finally{
-            dispatch(isAlertAction(null))
-            dispatch(isAlertAction(false));
         }
     }
 };
