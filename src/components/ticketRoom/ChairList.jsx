@@ -5,7 +5,7 @@ const ChairList = (props) => {
 
     const {chair} = props;
   return (
-    <div className='px-1 md:px-10 mx-auto md:ml-5' >
+    <div className='px-1 lg:px-10 mx-auto lg:ml-5' >
             {chair?.map(item => {
                 return <Chair key={item.maGhe} chairItem={item} />
             })}

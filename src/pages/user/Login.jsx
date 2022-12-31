@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { fetchApiUserLogin } from '../../redux/reducers/user/UserLogin';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-
+import * as yup from 'yup';
+import Swal from 'sweetalert2';
 
 const Login = (props) => {
   const [message, setMessage] = useState('');
@@ -19,14 +20,18 @@ const Login = (props) => {
       taiKhoan: '',
       matKhau: '',
     },
+    validationSchema: yup.object({
+      taiKhoan: yup.string().required('* Vui lòng nhập tài khoản !'),
+      matKhau: yup.string().required('* Vui lòng nhập mật khẩu !'),
+    }),
     onSubmit: async (value) => {
       try {
         const action = fetchApiUserLogin(value);
         await dispatch(action);
         if (saveAccount) {
           localStorage.setItem('ACCOUNT', JSON.stringify(value))
-        }
-        navigate('/')
+        }      
+        
       } catch (err) {
         setMessage(err.response.data.content);
       }
@@ -48,14 +53,18 @@ const Login = (props) => {
         {message && <p className='text-sm text-red-600 mb-5'>{message}</p>}
         <div >
           <div>
-            <input name='taiKhoan' onChange={formik.handleChange} type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500" placeholder="Tài Khoản" />
+            <p>Tài Khoản</p>
+            <input name='taiKhoan' onChange={formik.handleChange} type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Tài Khoản" />
+            {formik.errors.taiKhoan && formik.touched.taiKhoan && (<p className='text-red-700 mb-5'>{formik.errors.taiKhoan}</p>)}
           </div>
 
 
-          <div className='mt-8 relative'>
-            <input name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Mật Khẩu" />
+          <div className='relative'>
+            <p className='mb-1'>Mật Khẩu</p>
+            <input name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-3" placeholder="Mật Khẩu" />
+            {formik.errors.matKhau && formik.touched.matKhau && (<p className='text-red-700 mb-5'>{formik.errors.matKhau}</p>)}
             <div
-              style={{ position: 'absolute', top: '17%', right: '10px', cursor: 'pointer' }}>
+              style={{ position: 'absolute', top: '47%', right: '10px', cursor: 'pointer' }}>
               {showPassword ? <EyeInvisibleOutlined onClick={() => setShowPassword(false)} /> : <EyeOutlined onClick={() => setShowPassword(true)} />}
             </div>
           </div>

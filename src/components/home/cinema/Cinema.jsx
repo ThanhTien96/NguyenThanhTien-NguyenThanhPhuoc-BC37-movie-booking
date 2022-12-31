@@ -1,17 +1,18 @@
 import { Col, Row, Tabs, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { bookingServices } from '../../../services/bookingServiecs';
 import { truncateText } from '../../../util';
 import './Cinema.css';
 
-const Cinema = () => {
 
+const Cinema = () => {
 
     const movieSchedule = useSelector(state => state.bookingSlice.cinemaSystem);
     const [listSchedule, setListSchedule] = useState([]);
+
 
     useEffect(() => {
 
@@ -36,9 +37,8 @@ const Cinema = () => {
                         {
                             label: <div className='logoRap'><img className="w-10 " src={heThongRap.logo} alt='...' /></div>,
                             key: heThongRap.maHeThongRap,
-                            type: 'card',
                             children: <Tabs className='tabScrollbar'
-                                
+
                                 tabPosition='left'
                                 items={listSchedule.lstCumRap?.map(rap => {
                                     return {
@@ -48,18 +48,17 @@ const Cinema = () => {
                                             <Tag color='red' > xem chi tiết</Tag>
                                         </div>,
                                         key: rap.maCumRap,
-                                        type: 'card',
-                                        children: <div className='ml-5'>
+                                        children: <div className='ml-1 lg:ml-5'>
                                             {rap.danhSachPhim?.map(dsPhim => {
                                                 return (
-                                                    <Row key={dsPhim.maPhim} className='lichChieuPhim'>
-                                                        <Col span={24} lg={6} className="w-40">
+                                                    <Row key={dsPhim.maPhim} className='lichChieuPhim w-40 lg:w-full'>
+                                                        <Col span={24} sm={24} lg={6} className="w-20 lg:w-40">
                                                             <img className='w-full object-cover block' src={dsPhim.hinhAnh} alt="..."
                                                                 onError={() => { }}
                                                             />
                                                         </Col>
-                                                        <Col span={24} lg={17} className='ml-3 mt-3 md:mt-0'>
-                                                            <div className="flex items-center">
+                                                        <Col span={24} sm={24} lg={17} className='ml-3 mt-3 md:mt-0'>
+                                                            <div className="lg:flex lg:items-center">
                                                                 <span className='hidden md:block mr-3 px-3 py-1 rounded-md font-semibold bg-orange-600 text-white'>C18</span>
                                                                 <p className='text-sm lg:text-lg font-semibold'>{dsPhim.tenPhim}</p>
                                                             </div>

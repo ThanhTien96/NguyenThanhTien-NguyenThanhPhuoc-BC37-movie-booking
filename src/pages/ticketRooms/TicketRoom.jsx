@@ -22,10 +22,10 @@ const TicketRoom = (props) => {
     useEffect(() => {
         const action = fetchApiTicketRoom(params.id);
         dispatch(action)
-    },[params]);
+    }, [params]);
 
     //get dữ liệu từ store về
-    const {thongTinPhim, danhSachGhe} = useSelector(state => state.bookingSlice.ticketRoom);
+    const { thongTinPhim, danhSachGhe } = useSelector(state => state.bookingSlice.ticketRoom);
 
     return (
         <div className={styles.ticketRoom}>
@@ -42,6 +42,7 @@ const TicketRoom = (props) => {
                         <Result params={params} item={thongTinPhim} />
                     </Col>
                 </Row>
+
 
             </div>
         </div>

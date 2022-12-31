@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { AddMovieApi } from '../../../../redux/reducers/admin/movieManagerSlice';
 import { maNhom } from '../../../../util/apiPath';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 const AddNew = (props) => {
 
@@ -37,6 +38,12 @@ const AddNew = (props) => {
             hinhAnh: {},
 
         },
+        validationSchema: Yup.object({
+            tenPhim: Yup.string().required('* Vui lòng nhập tên phim !'),
+            trailer: Yup.string().required('* Vui lòng nhập trailer !'),
+            moTa: Yup.string().required('* Vui lòng nhập mô tả !'),
+            ngayKhoiChieu: Yup.string().required('* Vui lòng chọn ngày khởi chiếu !'),
+        }),
         onSubmit: async (values) => {
             let formData = new FormData();
             for (let key in values) {
@@ -122,18 +129,22 @@ const AddNew = (props) => {
                 </Form.Item>
                 <Form.Item label="Tên Phim">
                     <Input name='tenPhim' onChange={formik.handleChange} />
+                    {formik.errors.tenPhim && formik.touched.tenPhim && (<p className='text-red-700 mt-1'>{formik.errors.tenPhim}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Trailer">
                     <Input name='trailer' onChange={formik.handleChange} />
+                    {formik.errors.trailer && formik.touched.trailer && (<p className='text-red-700 mt-1'>{formik.errors.trailer}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Mô Tả">
                     <Input name='moTa' onChange={formik.handleChange} />
+                    {formik.errors.moTa && formik.touched.moTa && (<p className='text-red-700 mt-1'>{formik.errors.moTa}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Ngày Khởi Chiếu">
                     <DatePicker format={'DD/MM/YYYY'} onChange={handleChangeDatePicker} />
+                    {formik.errors.ngayKhoiChieu && formik.touched.ngayKhoiChieu && (<p className='text-red-700 mt-1'>{formik.errors.ngayKhoiChieu}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Sắp Chiếu">
@@ -149,12 +160,11 @@ const AddNew = (props) => {
                 </Form.Item>
 
                 <Form.Item label="Đánh Giá">
-                    <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
+                    <InputNumber name='danhGia' onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
                 </Form.Item>
 
                 <Form.Item label="Hình Ảnh">
                     <input type='file' onChange={handleChangeFile} accept="image/png, image/jpg, image/jpeg, image/gif" />
-
                     {imgSrc && <img className='mt-5' src={imgSrc} alt="..." style={{ width: '200px' }} />}
 
                 </Form.Item>

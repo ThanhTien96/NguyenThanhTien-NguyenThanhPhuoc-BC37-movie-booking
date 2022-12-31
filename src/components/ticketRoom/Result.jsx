@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './Result.module.css';
 import { RiCloseFill } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchApiBookingTickets, setChairSelectedListAction, setTabActiveKey } from '../../redux/reducers/booking/bookingSlice';
+import { fetchApiBookingTickets, setChairSelectedListAction} from '../../redux/reducers/booking/bookingSlice';
 import { UserOutlined, SmileOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
 import { ThongTinDatVe } from '../../util/thongTinDatVe';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const Result = (props) => {
@@ -82,25 +83,41 @@ const Result = (props) => {
 
                             await dispatch(fetchApiBookingTickets(thongTinVe));
 
-                            navigate('/user');
-                        }catch(err){
+                            Swal.fire({
+                                title: 'Đặt Vé Thành Công',
+                                text: "Kiểm tra lịch sử đặt vé",
+                                icon: 'success',
+                                confirmButtonText: 'Đồng Ý'
+                            }).then(result => {
+                                navigate('/user');
+                            })
+
+                        } catch (err) {
                             console.log(err);
                         }
 
-                        }}
+                    }}
                     className={styles.resultPay}>Thanh Toán</button>
             </div>
 
-            <div>
+            <div className='flex justify-around mt-5 lg:mt-10'>
 
-                <button className={styles.chair}></button>
-                <p>Ghế Trống</p>
-                <button className={clsx(styles.chair, styles.chairVip)}>Vip</button>
-                <p>Ghế Vip</p>
-                <button className={clsx(styles.chair, styles.booking)}><SmileOutlined style={{ fontSize: '18px', color: 'white' }} /></button>
-                <p>Ghế Đang Chọn</p>
-                <button className={clsx(styles.chair, styles.booked)}> <UserOutlined /></button>
-                <p>Ghế Đã Đặt</p>
+                <div>
+                    <button className={styles.chair}></button>
+                    <p>Ghế Trống</p>
+                </div>
+                <div>
+                    <button className={clsx(styles.chair, styles.chairVip)}>Vip</button>
+                    <p>Ghế Vip</p>
+                </div>
+                <div>
+                    <button className={clsx(styles.chair, styles.booking)}><SmileOutlined style={{ fontSize: '18px', color: 'white' }} /></button>
+                    <p>Ghế Đang Chọn</p>
+                </div>
+                <div>
+                    <button className={clsx(styles.chair, styles.booked)}> <UserOutlined /></button>
+                    <p>Ghế Đã Đặt</p>
+                </div>
 
             </div>
         </div>

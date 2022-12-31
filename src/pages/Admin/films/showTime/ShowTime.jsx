@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { fetchApiMoviesList } from '../../../../redux/reducers/admin/movieManagerSlice';
-
+import * as Yup from 'yup';
 
 
 const ShowTime = (props) => {
@@ -24,6 +24,11 @@ const ShowTime = (props) => {
             maRap: '',
             giaVe: '',
         },
+        validationSchema: Yup.object({
+            ngayChieuGioChieu: Yup.string().required('* Vui lòng chọn ngày khởi chiếu !'),
+            maRap: Yup.string().required('* Vui lòng chọn rạp !'),
+            giaVe: Yup.string().required('* Vui lòng nhập giá vé !'),
+        }),
         onSubmit: async (value) => {
             try{
                 dispatch(fetchApiMoviesList());
@@ -130,14 +135,17 @@ const ShowTime = (props) => {
                     <Select options={state.cinemaSchedule?.map((cinema, index) =>({label:cinema.tenCumRap, value:cinema.maCumRap}))}
                     onChange={handleChangeCinemaSchedule}  
                     placeholder="Chọn Cụm Rạp" />
+                    {formik.errors.maRap && formik.touched.maRap && (<p className='text-red-700 mt-1'>{formik.errors.maRap}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Ngày Giờ Chiếu">
                     <DatePicker format='DD/MM/YY hh:mm:ss' showTime onChange={onChangeDatePicker} onOk={onOk} />
+                    {formik.errors.ngayChieuGioChieu && formik.touched.ngayChieuGioChieu && (<p className='text-red-700 mt-1'>{formik.errors.ngayChieuGioChieu}</p>)}
                 </Form.Item>
 
                 <Form.Item label="Giá Vé">
                     <InputNumber onChange={onchangeInputNumber} min={75000} max={150000} />
+                    {formik.errors.giaVe && formik.touched.giaVe && (<p className='text-red-700 mt-1'>{formik.errors.giaVe}</p>)}
                 </Form.Item>
 
                 <Form.Item

@@ -1,10 +1,13 @@
-import { useFormik } from 'formik';
+import { ErrorMessage, useFormik } from 'formik';
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { fetchApiRegister } from '../../redux/reducers/user/UserLogin';
 import { useDispatch } from 'react-redux';
 import { maNhom } from '../../util/apiPath';
+import * as yup from 'yup';
+
+
 
 const SignUp = (props) => {
 
@@ -21,11 +24,16 @@ const SignUp = (props) => {
       soDT: '',
       maNhom: maNhom.NHOM,
       hoTen: '',
-
     },
+    validationSchema: yup.object({
+      taiKhoan: yup.string().required('* Tài Khoản không được bỏ trống !'),
+      matKhau: yup.string().required('* Mật khẩu không được bỏ trống !'),
+      email: yup.string().required('* Email không được bỏ trống !').email('* Không phải định dạng Email'),
+      soDT: yup.string().matches(/^[0-9]+$/, '* Số điện thoại chỉ nhập số 0-9').required('* Số điện thoại không được bỏ trống !'),
+      hoTen: yup.string().required('* Họ tên không được bỏ trống !'),
+    }),
     onSubmit: async (value) => {
       try {
-        console.log(value)
         await dispatch(fetchApiRegister(value))
 
         navigate('/user/login')
@@ -46,29 +54,32 @@ const SignUp = (props) => {
         className="bg-white py-6 mt-20 px-10 sm:max-w-md w-full ">
         <div className="sm:text-3xl text-2xl font-semibold text-center text-orange-600 mb-12">
           Đăng Ký Tài Khoản
-          
+
         </div>
         <div >
-        {validMess && <p className='text-red-900 mb-5 bg-red-200 p-2'>{validMess}</p>}
+          {validMess && <p className='text-red-900 mb-5 bg-red-200 p-2'>{validMess}</p>}
           <div>
             <p className='mb-2'>Tài khoản</p>
             <input
               onChange={formik.handleChange}
               name='taiKhoan'
-              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500" placeholder="Tài Khoản" />
+              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Tài Khoản" />
+            {formik.errors.taiKhoan && formik.touched.taiKhoan && (<p className='text-red-700 mb-3'>{formik.errors.taiKhoan}</p>)}
           </div>
-          <div className='mt-8 relative'>
+          <div className='relative'>
             <p className='mb-2'>Mật khẩu</p>
-            <input name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Mật Khẩu" />
+            <input name='matKhau' onChange={formik.handleChange} type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Mật Khẩu" />
+            {formik.errors.matKhau && formik.touched.matKhau && (<p className='text-red-700 mb-3'>{formik.errors.matKhau}</p>)}
             <div
               style={{ position: 'absolute', top: '40%', right: '10px', cursor: 'pointer' }}>
               {showPassword ? <EyeInvisibleOutlined onClick={() => setShowPassword(false)} /> : <EyeOutlined onClick={() => setShowPassword(true)} />}
             </div>
+            
           </div>
 
           <div className='relative'>
             <p className='mb-2'>Nhập lại mật khẩu</p>
-            <input name='nhapLaiMK' type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Nhập lại mật khẩu" />
+            <input name='nhapLaiMK' type={showPassword ? 'text' : 'password'} className="focus:outline-orange-600 border rounded-lg border-b w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Nhập lại mật khẩu" />
             <div
               style={{ position: 'absolute', top: '40%', right: '10px', cursor: 'pointer' }}>
               {showPassword ? <EyeInvisibleOutlined onClick={() => setShowPassword(false)} /> : <EyeOutlined onClick={() => setShowPassword(true)} />}
@@ -76,24 +87,30 @@ const SignUp = (props) => {
           </div>
 
           <div>
+            <p className='mb-2'>Email</p>
             <input
               onChange={formik.handleChange}
               name='email'
-              type="email" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Email" />
+              type="email" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Email" />
+            {formik.errors.email && formik.touched.email && (<p className='text-red-700 mb-3'>{formik.errors.email}</p>)}
           </div>
 
           <div>
+            <p className='mb-2'>Số điện thoại</p>
             <input
               onChange={formik.handleChange}
               name='soDT'
-              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Số Điện Thoại " />
+              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Số Điện Thoại " />
+            {formik.errors.soDT && formik.touched.soDT && (<p className=' text-red-700 mb-3'>{formik.errors.soDT}</p>)}
           </div>
 
           <div>
+            <p className='mb-2'>Họ và tên</p>
             <input
               onChange={formik.handleChange}
               name='hoTen'
-              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-8" placeholder="Họ Và Tên " />
+              type="text" className="focus:outline-orange-600 border rounded-lg w-full p-2 text-lg border-orange-400 placeholder-gray-500 mb-4" placeholder="Họ Và Tên " />
+            {formik.errors.hoTen && formik.touched.hoTen && (<p className='text-red-700 mb-3'>{formik.errors.hoTen}</p>)}
           </div>
 
           <div className="flex">
@@ -103,7 +120,7 @@ const SignUp = (props) => {
             </div>
           </div>
           <div className="flex justify-center my-6">
-            <button className=" cursor-pointer hover:border-sky-400  transition-all duration-500 rounded-full  p-3 w-full sm:w-56   bg-gradient-to-r from-orange-600  to-orange-300 text-white text-lg font-semibold ">
+            <button type='submit' className=" cursor-pointer hover:border-sky-400  transition-all duration-500 rounded-full  p-3 w-full sm:w-56   bg-gradient-to-r from-orange-600  to-orange-300 text-white text-lg font-semibold ">
               Tạo Tài Khoản
             </button>
           </div>
