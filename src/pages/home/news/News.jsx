@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { truncateText } from '../../../util';
 import styled from './News.module.css';
+import { animated, useSpring } from '@react-spring/web'
 
 
 const Flim24h = () => {
@@ -126,6 +127,20 @@ const Review = () => {
 }
 
 const News = () => {
+
+    const [films, setFims] = useState(true);
+
+    const [news, setNews] = useState(true);
+    const { x } = useSpring({
+        from: { x: 0 },
+        x: films ? 1 : 0,
+        config: { duration: 1000 },
+    });
+    const { y } = useSpring({
+        from: { y: 0 },
+        y: news ? 1 : 0,
+        config: { duration: 1000 },
+    });
     const [seeMore, setSeeMore] = useState(false);
     return (
         <div id='tinTuc24h' className='py-10 md:pt-32'>
@@ -135,15 +150,27 @@ const News = () => {
                     size='large'
                     centered={true}
                     popupClassName={styled.tabs}
-                    tabBarStyle={{ fontWeight: '600'}}
+                    tabBarStyle={{ fontWeight: '600' }}
                     items={[
                         {
-                            label: `Điện Ảnh 24h`,
+                            label: <animated.h3 className="font-medium" onClick={() => setFims(!films)}
+                                style={{
+                                    scale: x.to({
+                                        range: [0, 0.55, 0.65, 0.75, 1],
+                                        output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],
+                                    }),
+                                }}>Điện Ảnh 24h</animated.h3>,
                             key: '1',
                             children: seeMore && <Flim24h />,
                         },
                         {
-                            label: `Review`,
+                            label: <animated.h3 className="font-medium" onClick={() => setNews(!news)}
+                                style={{
+                                    scale: y.to({
+                                        range: [0, 0.55, 0.65, 0.75, 1],
+                                        output: [1, 0.97, 0.9, 1.2, 0.9, 1.2, 1.03, 1],
+                                    }),
+                                }}>Review</animated.h3>,
                             key: '2',
                             children: seeMore && <Review />,
                         },

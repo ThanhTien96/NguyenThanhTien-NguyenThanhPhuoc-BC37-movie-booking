@@ -1,16 +1,19 @@
-import { Card, Modal, Tag, Rate } from 'antd'
-import Meta from 'antd/es/card/Meta'
+import { Card, Modal, Tag, Rate } from 'antd';
+import Meta from 'antd/es/card/Meta';
 import React, { useRef, useState, memo } from 'react'
-import {  useSelector } from 'react-redux'
-import MovieSearch from './movie/MovieSearch'
+import { useSelector } from 'react-redux';
+import MovieSearch from './movie/MovieSearch';
 import { truncateText } from '../../util/index';
-import styles from './MovieList.module.css'
-import { NavLink } from 'react-router-dom'
-import Slider from 'react-slick'
+import styles from './MovieList.module.css';
+import { NavLink } from 'react-router-dom';
+import Slider from 'react-slick';
+
 
 
 
 const MoviesList = (props) => {
+
+  
 
   const trailerRef = useRef({ link: '', title: '' });
 
@@ -113,8 +116,8 @@ const MoviesList = (props) => {
                     <table className="table-auto w-full">
                       <tbody>
                         <tr>
-                          <th className='text-left'>{item.dangChieu && <Tag className='ml-3' color='magenta'>Dang Chieu</Tag>}</th> 
-                           <th className='text-right'>{item.sapChieu && <Tag color='magenta'>Sap Chieu</Tag>}</th>
+                          <th className='text-left'>{item.dangChieu && <Tag className='ml-3' color='magenta'>Dang Chieu</Tag>}</th>
+                          <th className='text-right'>{item.sapChieu && <Tag color='magenta'>Sap Chieu</Tag>}</th>
                         </tr>
                         <tr>
                           <td><Rate className='text-sm ml-3' value={item.danhGia} count={5} /> </td>
@@ -122,7 +125,9 @@ const MoviesList = (props) => {
                       </tbody>
                     </table>
                     <NavLink to={`/detail/${item.maPhim}`}>
-                      <button className={styles.btnBooking}>Đặt Vé</button>
+                      <button
+                        className={styles.btnBooking}>Đặt Vé
+                      </button>
                     </NavLink>
                   </div>
                 </div>

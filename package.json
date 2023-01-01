@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@aspnet/signalr": "^1.0.27",
+    "@react-spring/web": "^9.6.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -15,6 +15,10 @@
     @apply relative h-64 object-cover;
     transition: all .5s 
 }
+.movieCard:hover .imgCard{
+    transform: rotateY(360deg);
+    transition: all .6s ease-out
+}
 .movieHot{
     @apply px-2 py-2 bg-red-600 text-white absolute top-0 right-0 opacity-90;
 }
