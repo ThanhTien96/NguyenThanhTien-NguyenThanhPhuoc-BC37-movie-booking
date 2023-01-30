@@ -56,7 +56,7 @@ export const fetchApiRegister = (data) => {
     }
 };
 
-// lay danh sach tai khoan
+// lay thông tin tai khoan
 export const fetchApiProfile = () => {
     return async (dispatch) => {
         try{    
