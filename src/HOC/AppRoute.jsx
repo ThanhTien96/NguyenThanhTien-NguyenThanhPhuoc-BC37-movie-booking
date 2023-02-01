@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 function AppRoute({ path, component: Comp,isPrivate, isAuth,isAdmin}) {
 
     const profile = useSelector(state => state.userSlice.userLogin);
-
+    console.log(profile)
     const token = localStorage.getItem('TOKEN');
     if(isPrivate){
       if(token) return <Comp />

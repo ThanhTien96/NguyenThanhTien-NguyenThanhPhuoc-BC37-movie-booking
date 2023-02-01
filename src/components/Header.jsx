@@ -70,7 +70,7 @@ const Header = (props) => {
         dispatch(fetchApiLoginAction(null));
         localStorage.removeItem('TOKEN');
         navigate('/');
-        Swal.fire('Đăn Xuất Thành Công !', '', 'success');
+        Swal.fire('Đăng Xuất Thành Công !', '', 'success');
       } 
 
     })
