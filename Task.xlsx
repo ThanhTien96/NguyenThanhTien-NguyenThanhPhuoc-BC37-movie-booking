@@ -1,0 +1,31 @@
+
+************ Bảng Phân Chia Công Viêc ***************
+
+////////*********** 1/ Nguyễn Thanh Tiến: ********////////////
+
+- Làm phần giao diện: 
++ Trang Chủ
++ Trang Cụm rạp
++ Trang tin tức
++ Trang chi tiết
++ Trang ứng dụng
++ rạp chiếu đặt vé xem phim
+
+
+- Phần Admin: 
++ thêm phim
++ cập nhật thông tin phim
++ xóa phim
++ tạo Lịch chiếu phim
+
+/////********* 2 Nguyễn Thành Phước: ********///////
+
++ Trang đăng ký
++ Trang đăng nhập
+
+- Admin:
++ quản lý tài khoản
++ tạo tài khoản
++ Sửa thông tin tài khoản
++ xóa tài khoản
++ hỗ trợ xây dựng UI/UX

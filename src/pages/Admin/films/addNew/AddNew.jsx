@@ -61,7 +61,7 @@ const AddNew = (props) => {
                 navigate('/admin');
 
             } catch(err) {
-                console.log(err);
+                console.log(err.response);
             }
 
         }
@@ -79,7 +79,7 @@ const AddNew = (props) => {
         };
     };
 
-    //hàm lấy giá trị đánh giá
+    //hàm lấy giá trị input number
     const handleChangeInputNumber = (name) => {
         return (value) => { formik.setFieldValue('danhGia', value) };
     };

@@ -69,7 +69,8 @@ export const AddMovieApi = (formData) => async (dispatch, setState) => {
     try{
         dispatch(setIsLoading(true));
 
-        await adminService.AddMoviePostApi(formData);
+        const res = await adminService.AddMoviePostApi(formData);
+        console.log(res)
 
         await dispatch(fetchApiMoviesList());
 

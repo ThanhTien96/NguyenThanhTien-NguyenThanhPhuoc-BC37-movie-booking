@@ -53,9 +53,9 @@ const EditFilms = (props) => {
                 }
             }
             try {
-
-                await dispatch(editFilmApi(formData));
                 
+                await dispatch(editFilmApi(formData));
+                console.log(values)
                 navigate('/admin');
             } catch (err) {
                 console.log(err);
